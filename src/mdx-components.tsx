@@ -51,13 +51,17 @@ export function ListItem(props: React.HTMLAttributes<HTMLLIElement>) {
   return <li {...props} className='mb-2' />;
 }
 
-export function CodeBlock(props: React.HTMLAttributes<HTMLElement>) {
+export function Pre(props: React.HTMLAttributes<HTMLElement>) {
+  return <pre className='bg-gray-100 p-4 rounded mb-4'>{props.children}</pre>;
+}
+
+export function Code(props: React.HTMLAttributes<HTMLElement>) {
   return (
-    <pre className='bg-gray-100 p-4 rounded mb-4'>
-      <code {...props} className='text-sm text-gray-800'>
-        {props.children}
-      </code>
-    </pre>
+    <code
+      {...props}
+      className='bg-gray-200 rounded px-1 text-sm font-mono text-gray-800'>
+      {props.children}
+    </code>
   );
 }
 
@@ -75,7 +79,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ul: UnorderedList,
     ol: OrderedList,
     li: ListItem,
-    code: CodeBlock,
+    pre: Pre,
+    code: Code,
     StackBlitzEmbed: StackBlitzEmbed,
   };
 }
