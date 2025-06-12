@@ -1,3 +1,5 @@
+import { notFound } from 'next/navigation';
+
 interface PostProps {
   params: {
     slug: Promise<string>;
@@ -5,18 +7,28 @@ interface PostProps {
 }
 
 export default async function PostPage({ params }: PostProps) {
-  const { slug } = await params;
-  const { default: Post } = await import(`@/content/${slug}.mdx`);
+  try {
+    const { slug } = await params;
+    const post = await import(`@/content/${slug}.mdx`);
 
-  return <Post />;
+    return <post.default />;
+  } catch {
+    return notFound();
+  }
 }
 
 export async function generateMetadata({ params }: PostProps) {
-  const { slug } = await params;
-  const { metadata } = await import(`@/content/${slug}.mdx`);
+  try {
+    const { slug } = await params;
+    const post = await import(`@/content/${slug}.mdx`);
 
-  return {
-    title: metadata.title,
-    description: metadata.description,
-  };
+    return {
+      title: post.metadata.title,
+      description: post.metadata.description,
+    };
+  } catch {
+    return {
+      notFound: true,
+    };
+  }
 }
