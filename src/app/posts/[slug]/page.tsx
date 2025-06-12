@@ -1,12 +1,12 @@
 import { notFound } from 'next/navigation';
 
-interface PostProps {
-  params: {
-    slug: Promise<string>;
-  };
+interface PostPageProps {
+  params: Promise<{
+    slug: string;
+  }>;
 }
 
-export default async function PostPage({ params }: PostProps) {
+export default async function PostPage({ params }: PostPageProps) {
   try {
     const { slug } = await params;
     const post = await import(`@/content/${slug}.mdx`);
@@ -17,7 +17,7 @@ export default async function PostPage({ params }: PostProps) {
   }
 }
 
-export async function generateMetadata({ params }: PostProps) {
+export async function generateMetadata({ params }: PostPageProps) {
   try {
     const { slug } = await params;
     const post = await import(`@/content/${slug}.mdx`);
