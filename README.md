@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js MDX Blog Template
 
-## Getting Started
+Next.js와 MDX를 기반으로 한 블로그 템플릿입니다.  
+MDX 문서 기반의 포스트 작성, 커스텀 컴포넌트, StackBlitz 임베드, Tailwind CSS 스타일링 등을 지원합니다.
 
-First, run the development server:
+## 주요 기능
+
+- **MDX 기반 포스트 작성**: `src/content` 폴더에 `.mdx` 파일로 포스트 작성
+- **커스텀 MDX 컴포넌트**: 헤딩, 리스트, 코드블록 등 스타일 적용
+- **StackBlitz 임베드**: MDX에서 `<StackBlitzEmbed />` 컴포넌트로 StackBlitz 프로젝트 임베드
+- **자동 OG 이미지 생성**: 포스트별 OG 이미지 자동 생성
+- **반응형 레이아웃**: Tailwind CSS 기반 반응형 UI
+- **Next.js App Router**: 최신 Next.js 구조 적용
+
+## 설치 및 실행
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+git clone https://github.com/your-repo/next-mdx-blog-template.git
+cd next-mdx-blog-template
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 커밋 메시지 컨벤션
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [commitlint](https://commitlint.js.org/)를 사용하여 [Conventional Commits](https://www.conventionalcommits.org/ko/v1.0.0/) 규칙을 적용합니다.
+- 커밋 메시지는 반드시 컨벤셔널 커밋 형식을 따라야 하며, 그렇지 않으면 커밋이 거부됩니다.
+- 대소문자 규칙은 한국 문화권에 맞지 않아 비활성화 하였습니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 폴더 구조
 
-## Learn More
+```
+next-mdx-blog-template/
+├── src/
+│   ├── app/                # Next.js app 디렉토리
+│   │   ├── posts/          # 포스트 상세/OG 이미지 라우트
+│   │   ├── header.tsx      # 헤더 컴포넌트
+│   │   ├── footer.tsx      # 푸터 컴포넌트
+│   │   ├── layout.tsx      # 전체 레이아웃
+│   │   └── page.tsx        # 메인 페이지(포스트 리스트)
+│   ├── components/
+│   │   └── stack-blitz-embed.tsx  # StackBlitz 임베드 컴포넌트
+│   ├── content/            # MDX 포스트 파일 위치
+│   └── mdx-components.tsx  # MDX용 커스텀 컴포넌트
+├── public/
+├── package.json
+├── next.config.ts
+├── tailwind.config.js
+└── ...
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 기술 스택
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js 15](https://nextjs.org/)
+- [React 19](https://react.dev/)
+- [MDX](https://mdxjs.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Motion](https://motion.dev/) (애니메이션)
+- [StackBlitz Embed API](https://developer.stackblitz.com/docs/platform/embedding/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## MDX에서 StackBlitz 임베드 사용 예시
 
-## Deploy on Vercel
+```mdx
+<StackBlitzEmbed
+  repo='GyeongtaeGim/react-scroll-interaction-example'
+  height='700px'
+/>
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 커스텀 MDX 컴포넌트
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Heading1~6, Paragraph, Blockquote, List, CodeBlock 등 스타일 적용
+- `src/mdx-components.tsx`에서 정의
+
+## 라이선스
+
+MIT License
